@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TestTestServer.Data;
-
+using MySqlConnector;
 namespace TestTestServer
 {
     public class Program
@@ -17,7 +17,10 @@ namespace TestTestServer
             builder.Services.AddSwaggerGen();
             //
             builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
-            //
+            /*
+            builder.Services.AddDbContext<MyDatabaseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
+            */
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

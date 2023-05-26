@@ -1,3 +1,5 @@
+using Microsoft.Data.SqlClient;
+
 namespace TestTestServer
 {
     public class WeatherForecast
