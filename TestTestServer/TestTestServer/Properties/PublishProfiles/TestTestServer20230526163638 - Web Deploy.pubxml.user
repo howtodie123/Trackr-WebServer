@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANOalg24UxEaZtX1wJTPSgwAAAAACAAAAAAAQZgAAAAEAACAAAADO9Gmbl5k323f6YE8+lf5DG83P8+Balq0tY6SWDP+1rQAAAAAOgAAAAAIAACAAAADK/XwR6y1l5Qy/pLxRaWspFgY+7/VtDbaEArhAFe7BvoAAAAAmbRpE6tW3SWJHLMFjKpiaTX4Avi54H6b4y8z4tbLCtkhCHK4IwOt3lLpKNPqcxvbNHqF0J5X7nsJ3Fw2v4GZvEcfnOgCeSVQfFLtMJ/YMa9W6ph37vvAzPdVgEaJh6U7X9S5C4z7J+P8EXJKOOmBcFGn3ZRNzo3skXeSq7gWmJ0AAAADDEJIboAimD1j/+JD7q3vSx4YRlOuFfjL86fnzBfjDxLdHdXiMfj6hk2oJHdRzCnuZWx+J9xomwwscPkCc6KAw</EncryptedPassword>
+    <History>False|2023-05-26T11:13:22.2179082Z;False|2023-05-26T18:08:46.3628848+07:00;False|2023-05-26T18:07:12.7932343+07:00;False|2023-05-26T18:03:56.3022515+07:00;False|2023-05-26T18:00:03.9337183+07:00;False|2023-05-26T17:57:22.4067566+07:00;False|2023-05-26T17:55:15.7090913+07:00;False|2023-05-26T17:50:24.8972866+07:00;False|2023-05-26T17:49:14.5025865+07:00;False|2023-05-26T17:47:02.8298347+07:00;False|2023-05-26T17:46:35.4081251+07:00;True|2023-05-26T17:23:23.8177674+07:00;True|2023-05-26T17:22:18.6191104+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ApiDatabase">
+      <Value>Server=trackrsvr.mysql.database.azure.com%3bDatabase=main%3bUser=Tracker%3bPassword=DoAnLTM123</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="TestTestServer.Data.APIData">
+      <Value>Server=trackrsvr.mysql.database.azure.com%3bDatabase=main%3bUser=Tracker%3bPassword=DoAnLTM123</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
