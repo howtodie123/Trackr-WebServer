@@ -86,3 +86,6 @@ D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\TestTestServer.pdb
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\TestTestServer.genruntimeconfig.cache
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\ref\TestTestServer.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\DataParcel.json
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Newtonsoft.Json.dll

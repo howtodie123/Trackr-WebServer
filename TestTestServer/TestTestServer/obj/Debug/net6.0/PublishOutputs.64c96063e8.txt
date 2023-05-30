@@ -10,6 +10,7 @@ D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\ne
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Debug\net6.0\PubTmp\Out\Microsoft.Extensions.Caching.Abstractions.dll

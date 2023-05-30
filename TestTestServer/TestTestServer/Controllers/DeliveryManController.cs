@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TestTestServer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace TestTestServer.Controllers
 {
@@ -10,9 +12,11 @@ namespace TestTestServer.Controllers
     public class DeliveryManController : Controller
     {
         private readonly APIData dbContext;
+        private readonly IConfiguration _configuration;
 
-        public DeliveryManController(APIData dbContext)
+        public DeliveryManController(APIData dbContext, IConfiguration configuration)
         {
+            _configuration = configuration;
             this.dbContext = dbContext;
         }
         // get: lấy dữ liệu
@@ -45,6 +49,40 @@ namespace TestTestServer.Controllers
             await dbContext.SaveChangesAsync();
             return Ok(deliveryMan);
         }
+        // Cập nhật vị trí đơn hàng
+        [HttpPost("Location")]
+        public async Task<IActionResult> Update(UpdateLocation location)
+        {
+            var Location1 = new UpdateLocation();
+            string LocationParcel = ""; string Realtime = "";
+            await
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
+            {
+                var sql = "SELECT ParLocation , RealTime FROM Parcel where ParID = '" + location.ParID.ToString() + "'";
+                connection.Open();
+                using SqlCommand command = new SqlCommand(sql, connection);
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    LocationParcel = reader["ParLocation"].ToString() + "@" + location.Location;
+                    Realtime = reader["RealTime"].ToString() + "@" + location.RealTime;
+                }
+                reader.Close();
+                var sqlUpdate = "UPDATE Parcel SET Parlocation  = '" + LocationParcel + "' WHERE ParID = '" + location.ParID +"'" ;
+                using SqlCommand sqlCommand = new SqlCommand(sqlUpdate, connection);
+                SqlDataReader sqlReader = sqlCommand.ExecuteReader();
+                sqlReader.Close();
+                var sqlUpdate1 = "UPDATE Parcel SET Realtime  = '" + Realtime + "' WHERE ParID = '" + location.ParID + "'";
+                using SqlCommand sqlCommand1 = new SqlCommand(sqlUpdate1, connection);
+                SqlDataReader sqlReader1 = sqlCommand1.ExecuteReader();
+                sqlReader1.Close();
+                Location1.ParID = location.ParID;
+                Location1.Location = LocationParcel;
+                Location1.RealTime = Realtime;         
+            }
+            return Ok(Location1);
+        }
+        //
         // put: chỉnh sửa dữ liệu
         [HttpPut]
         [Route("{id:int}")]

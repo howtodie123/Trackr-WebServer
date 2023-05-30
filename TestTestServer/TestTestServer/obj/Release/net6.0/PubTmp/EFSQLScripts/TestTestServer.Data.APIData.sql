@@ -11,7 +11,7 @@ GO
 BEGIN TRANSACTION;
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230519111703_init')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230530102138_initData')
 BEGIN
     CREATE TABLE [Admins] (
         [AdID] int NOT NULL IDENTITY,
@@ -23,46 +23,7 @@ BEGIN
 END;
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230519111703_init')
-BEGIN
-    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230519111703_init', N'7.0.5');
-END;
-GO
-
-COMMIT;
-GO
-
-BEGIN TRANSACTION;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520040134_DeliveryMan')
-BEGIN
-    CREATE TABLE [DeliveryMan] (
-        [ManID] int NOT NULL IDENTITY,
-        [ManName] nvarchar(max) NULL,
-        [ManPhone] nvarchar(max) NULL,
-        [ManAccount] nvarchar(max) NULL,
-        [ManPassword] nvarchar(max) NULL,
-        CONSTRAINT [PK_DeliveryMan] PRIMARY KEY ([ManID])
-    );
-END;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520040134_DeliveryMan')
-BEGIN
-    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230520040134_DeliveryMan', N'7.0.5');
-END;
-GO
-
-COMMIT;
-GO
-
-BEGIN TRANSACTION;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520042622_Customer')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230530102138_initData')
 BEGIN
     CREATE TABLE [Customer] (
         [CusID] int NOT NULL IDENTITY,
@@ -78,28 +39,29 @@ BEGIN
 END;
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520042622_Customer')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230530102138_initData')
 BEGIN
-    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230520042622_Customer', N'7.0.5');
+    CREATE TABLE [DeliveryMan] (
+        [ManID] int NOT NULL IDENTITY,
+        [ManName] nvarchar(max) NULL,
+        [ManPhone] nvarchar(max) NULL,
+        [ManAccount] nvarchar(max) NULL,
+        [ManPassword] nvarchar(max) NULL,
+        CONSTRAINT [PK_DeliveryMan] PRIMARY KEY ([ManID])
+    );
 END;
 GO
 
-COMMIT;
-GO
-
-BEGIN TRANSACTION;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520054847_Parcel')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230530102138_initData')
 BEGIN
     CREATE TABLE [Parcel] (
         [ParID] int NOT NULL IDENTITY,
+        [ParImage] nvarchar(max) NULL,
         [ParDescription] nvarchar(max) NULL,
         [ParStatus] nvarchar(max) NULL,
         [ParDeliveryDate] datetime2 NOT NULL,
         [ParLocation] nvarchar(max) NULL,
-        [Realtime] datetime2 NOT NULL,
+        [Realtime] nvarchar(max) NULL,
         [Note] nvarchar(max) NULL,
         [Price] int NOT NULL,
         [CusID] int NOT NULL,
@@ -109,36 +71,10 @@ BEGIN
 END;
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520054847_Parcel')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230530102138_initData')
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230520054847_Parcel', N'7.0.5');
-END;
-GO
-
-COMMIT;
-GO
-
-BEGIN TRANSACTION;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230520150006_a')
-BEGIN
-    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230520150006_a', N'7.0.5');
-END;
-GO
-
-COMMIT;
-GO
-
-BEGIN TRANSACTION;
-GO
-
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230525012533_huhu')
-BEGIN
-    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20230525012533_huhu', N'7.0.5');
+    VALUES (N'20230530102138_initData', N'7.0.5');
 END;
 GO
 

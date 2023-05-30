@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace TestTestServer.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/admin")]
     public class AdminController : Controller 
     {
         private readonly APIData dbContext;

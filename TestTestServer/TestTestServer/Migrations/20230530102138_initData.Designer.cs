@@ -12,8 +12,8 @@ using TestTestServer.Data;
 namespace TestTestServer.Migrations
 {
     [DbContext(typeof(APIData))]
-    [Migration("20230520042622_Customer")]
-    partial class Customer
+    [Migration("20230530102138_initData")]
+    partial class initData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,6 +104,49 @@ namespace TestTestServer.Migrations
                     b.HasKey("ManID");
 
                     b.ToTable("DeliveryMan");
+                });
+
+            modelBuilder.Entity("TestTestServer.Models.Parcel", b =>
+                {
+                    b.Property<int>("ParID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParID"));
+
+                    b.Property<int>("CusID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ManID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ParDeliveryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ParDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Realtime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ParID");
+
+                    b.ToTable("Parcel");
                 });
 #pragma warning restore 612, 618
         }

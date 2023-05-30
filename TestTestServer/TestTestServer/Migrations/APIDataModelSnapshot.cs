@@ -126,6 +126,9 @@ namespace TestTestServer.Migrations
                     b.Property<string>("ParDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ParImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ParLocation")
                         .HasColumnType("nvarchar(max)");
 
@@ -135,8 +138,8 @@ namespace TestTestServer.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Realtime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Realtime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ParID");
 

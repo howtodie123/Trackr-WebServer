@@ -33,19 +33,20 @@ namespace TestTestServer.Controllers
         }
         // post: tạo  mới
         [HttpPost]
-        public async Task<IActionResult> Add(ParcelRequest addd)
+        public async Task<IActionResult> Add(ParcelRequest parcelRequest)
         {
             var Parcel = new Parcel()
             {
                 // ParID = addd.ParID,
-                ParDescription = addd.ParDescription,
-                ParStatus = addd.ParStatus,
-                ParDeliveryDate = addd.ParDeliveryDate,
-                ParLocation = addd.ParLocation,
-                Realtime = addd.Realtime,
-                Price = addd.Price,
-                CusID = addd.CusID,
-                ManID = addd.ManID,
+                ParImage = parcelRequest.ParImage,
+                ParDescription = parcelRequest.ParDescription,
+                ParStatus = parcelRequest.ParStatus,
+                ParDeliveryDate = parcelRequest.ParDeliveryDate,
+                ParLocation = parcelRequest.ParLocation,
+                Realtime = parcelRequest.Realtime,
+                Price = parcelRequest.Price,
+                CusID = parcelRequest.CusID,
+                ManID = parcelRequest.ManID,
             };
             await dbContext.Parcel.AddAsync(Parcel);
             await dbContext.SaveChangesAsync();
@@ -59,6 +60,7 @@ namespace TestTestServer.Controllers
             var Parcel = await dbContext.Parcel.FindAsync(id);
             if (Parcel != null)
             {
+                Parcel.ParImage = Update.ParImage;
                 Parcel.ParDescription = Update.ParDescription;
                 Parcel.ParStatus = Update.ParStatus;
                 Parcel.ParDeliveryDate = Update.ParDeliveryDate;

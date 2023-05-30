@@ -3,7 +3,7 @@
   <parameter name="IIS Web Application Name" description="" value="TestTestServer20230526163638" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\LapTrinhMang\\LyThuyet\\DoAnLyThuyet\\TestTestServer\\TestTestServer\\obj\\Debug\\net6\.0\\PubTmp\\Out\\$" />
   </parameter>
-  <parameter name="TestTestServer.Data.APIData" description="" value="Server=trackrsvr.mysql.database.azure.com;Database=main;User=Tracker;Password=DoAnLTM123" tags="dbfullsql">
+  <parameter name="TestTestServer.Data.APIData" description="" value="Data Source=tcp:testtestserverdbserver.database.windows.net,1433;Initial Catalog=TestTestServer_db;User Id=trackr@testtestserverdbserver;Password=Phat1234" tags="dbfullsql">
     <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\LapTrinhMang\\LyThuyet\\DoAnLyThuyet\\TestTestServer\\TestTestServer\\obj\\Debug\\net6\.0\\PubTmp\\EFSQLScripts\\TestTestServer\.Data\.APIData\.sql$" />
   </parameter>
 </parameters>

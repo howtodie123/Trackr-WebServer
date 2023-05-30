@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TestTestServer.Data;
 using MySqlConnector;
+using System.Runtime.Intrinsics;
+
 namespace TestTestServer
 {
     public class Program
@@ -16,7 +18,8 @@ namespace TestTestServer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             //
-            builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
+             builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
+          //  builder.Services.AddDbContext<APIData>(options => options.UseInMemoryDatabase("ApiDatabase"));
             /*
             builder.Services.AddDbContext<MyDatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
