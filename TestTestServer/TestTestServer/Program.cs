@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TestTestServer.Data;
 using MySqlConnector;
 using System.Runtime.Intrinsics;
@@ -17,6 +17,8 @@ namespace TestTestServer
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<FileService>(); // cho phần up file
+            builder.Services.AddConnections();
             //
              builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
           //  builder.Services.AddDbContext<APIData>(options => options.UseInMemoryDatabase("ApiDatabase"));

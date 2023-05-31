@@ -89,3 +89,6 @@ D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\ne
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\DataParcel.json
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Azure.Storage.Common.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\System.IO.Hashing.dll

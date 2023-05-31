@@ -1,14 +1,9 @@
-﻿using TestTestServer.Data;
-using Microsoft.AspNetCore.Mvc;
-using TestTestServer.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
-using System.IO;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics.Eventing.Reader;
+using TestTestServer.Data;
+using TestTestServer.Models;
 
 namespace TestTestServer.Controllers
 {
