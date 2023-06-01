@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[12.16.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -65,6 +69,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             },
             "MySqlConnector": {
               "target": "Package",

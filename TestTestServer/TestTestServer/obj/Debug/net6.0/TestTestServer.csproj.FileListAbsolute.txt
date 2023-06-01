@@ -92,3 +92,8 @@ D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\ne
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Azure.Storage.Blobs.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\Azure.Storage.Common.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\System.IO.Hashing.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\MailKit.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\MimeKit.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

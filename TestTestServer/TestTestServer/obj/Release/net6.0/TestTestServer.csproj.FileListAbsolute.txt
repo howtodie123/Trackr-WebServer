@@ -89,3 +89,11 @@ D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\DataParcel.json
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Newtonsoft.Json.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Azure.Storage.Blobs.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\Azure.Storage.Common.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\System.IO.Hashing.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\BouncyCastle.Cryptography.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\MailKit.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\MimeKit.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
