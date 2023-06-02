@@ -4,7 +4,9 @@ using TestTestServer.Models;
 using Microsoft.EntityFrameworkCore;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Security.Cryptography;
 using static System.Net.Mime.MediaTypeNames;
+using System.Text;
 
 namespace TestTestServer.Controllers
 {
@@ -22,9 +24,9 @@ namespace TestTestServer.Controllers
         public async Task<IActionResult> ForgotPassword(LoginCheck login)
         {
             //kiểm tra xem account có tồn tại hay không
-            var loginCheck = new LoginCheck();
             var check = await _esistAccountService.checkAccount(login);
-            if (check == loginCheck) { return NotFound(); }
+            if (check.Account == null) { return NotFound(); }
+
             // gửi mail trả về mật khẩu cho ng dùng
             var client = new SmtpClient();
             client.Connect("smtp.gmail.com", 465, true); // smtp host, port, use ssl.
@@ -32,14 +34,34 @@ namespace TestTestServer.Controllers
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Trackr", "TrackrService@gmail.com"));
             message.To.Add(new MailboxAddress("", login.Account));
-            message.Subject = "Lấy Lại Mật Khẩu Trackr";
+            message.Subject = "Forgot Password Trackr ";
+            Random rd = new Random();
+            int Numrd = rd.Next(100000, 999999);
+            string text = "Code Reset Password is : " + Numrd.ToString(); // gửi code otp qua gmail
+            string msg = "";
+            // mã hóa code OTP
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Cần chuyển đổi string sang dạng byte khi Hash
+                byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(Numrd.ToString()));
+                // Chuyển đổi chuỗi vừa hash sang dạng string để dễ sử dụng
+                 msg = BitConverter.ToString(hashValue).Replace("-", "").ToLower();
+            }
+            // 
+            Otp otp = new Otp
+            {
+                Id = check.ID,
+                name = check.Name,
+                Code = msg,
+                role = check.role,
+            };
             message.Body = new TextPart("plain")
             {
-                Text = "Mật Khẩu của bạn là: " //+ check.Password
+                Text = text 
             };
             client.Send(message);
 
-            return Ok("Đã gửi mail");
+            return Ok(otp);
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿
-
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Org.BouncyCastle.Security.Certificates;
 using TestTestServer.Models;
 
 namespace TestTestServer;
@@ -14,60 +13,71 @@ public class EsistAccountService
         _configuration = configuration;
     }
 
-    public  async Task<LoginCheck> checkAccount(LoginCheck login)
+    public  async Task<Login?> checkAccount(LoginCheck login)
     {
-        var cus = new LoginCheck(); var CusCheck = new LoginCheck();
+        var Account = new Login(); 
 
         await
         using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
         {
-            // SqlParameter ID = new SqlParameter("@id", SqlDbType.Int);
-            //  ID.Value = id;
-            var sqlCus = "SELECT CusAccount,CusPassword FROM Customer Where CusAccount = '" + login.Account.ToString() + "'";
+            var sqlCus = "SELECT CusName,CusAccount,CusPassword ,CusID FROM Customer Where CusAccount = '" + login.Account.ToString() + "'";
             connection.Open();
             using SqlCommand command = new SqlCommand(sqlCus, connection);
             using SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var check = new LoginCheck()
+                var check = new Login()
                 {
+                    ID = (int)reader["CusID"],
                     Account = reader["CusAccount"].ToString(),
                     Password = reader["CusPassword"].ToString(),
+                    role = "Customer",
+                    Name = reader["CusName"].ToString(),
                 };
-                cus = check;
+                Account = check;
             }
-            if (cus == CusCheck)
+            reader.Close();
+            if (Account.Account == null)
             {
-                var sqlAd = "SELECT AdAccount FROM Admins Where AdAccount = '" + login.Account.ToString() + "'";
+                var sqlAd = "SELECT AdName,AdID,AdAccount,AdPassword FROM Admins Where AdAccount = '" + login.Account.ToString() + "'";
                 using SqlCommand commandAd = new SqlCommand(sqlAd, connection);
-                using SqlDataReader readerAd = command.ExecuteReader();
+                using SqlDataReader readerAd = commandAd.ExecuteReader();
                 while (readerAd.Read())
                 {
-                    var check = new LoginCheck()
+                    var check = new Login()
                     {
+                        ID = (int)readerAd["AdID"],
                         Account = readerAd["AdAccount"].ToString(),
-                        Password = reader["AdPassword"].ToString(),
+                        Password = readerAd["AdPassword"].ToString(),
+                        Name = readerAd["AdName"].ToString(),
+                        role = "Admin",
                     };
-                    cus = check;
+                    Account = check;
                 }
-                if (cus == CusCheck)
+                readerAd.Close();
+                if (Account.Account == null)
                 {
-                    var sqlDeli = "SELECT ManAccount,ManPassword FROM DeliveryMan Where ManAccount = '" + login.Account.ToString() + "'";
-                    using SqlCommand commandDeli = new SqlCommand(sqlAd, connection);
-                    using SqlDataReader readerDeli = command.ExecuteReader();
+                    readerAd.Close();
+                    var sqlDeli = "SELECT ManName,ManID,ManAccount,ManPassword FROM DeliveryMan Where ManAccount = '" + login.Account.ToString() + "'";
+                    using SqlCommand commandDeli = new SqlCommand(sqlDeli, connection);
+                    using SqlDataReader readerDeli = commandDeli.ExecuteReader();
                     while (readerDeli.Read())
                     {
-                        var check = new LoginCheck()
+                        var check = new Login()
                         {
+                            ID = (int)readerDeli["ManID"],
                             Account = readerDeli["ManAccount"].ToString(),
                             Password = readerDeli["ManPassword"].ToString(),
+                            Name = readerDeli["ManName"].ToString(),
+                            role = "DeliveryMan",
                         };
-                        cus = check;
+                        Account = check;
                     }
-                    if (cus == CusCheck) { return CusCheck; }
+                    readerDeli.Close();
+                    if (Account.Account == null) { return Account; }
                 }
             }
-        }
-        return cus;
+            return Account;
+        }   
     }
 }

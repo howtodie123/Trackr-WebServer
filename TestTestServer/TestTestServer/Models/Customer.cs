@@ -7,6 +7,7 @@ namespace TestTestServer.Models
     {
         [Key]
         public int CusID { get; set; }
+        public string? CusImage { get; set; }
         public string? CusName { get; set; }
         public string? CusAddress { get; set; }
         public string? CusPhone { get; set; }

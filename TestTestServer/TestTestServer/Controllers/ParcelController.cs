@@ -37,13 +37,13 @@ namespace TestTestServer.Controllers
         {
             var Parcel = new Parcel()
             {
-                // ParID = addd.ParID,
                 ParImage = parcelRequest.ParImage,
                 ParDescription = parcelRequest.ParDescription,
                 ParStatus = parcelRequest.ParStatus,
                 ParDeliveryDate = parcelRequest.ParDeliveryDate,
                 ParLocation = parcelRequest.ParLocation,
                 Realtime = parcelRequest.Realtime,
+                Note = parcelRequest.Note,
                 Price = parcelRequest.Price,
                 CusID = parcelRequest.CusID,
                 ManID = parcelRequest.ManID,
@@ -66,6 +66,7 @@ namespace TestTestServer.Controllers
                 Parcel.ParDeliveryDate = Update.ParDeliveryDate;
                 Parcel.ParLocation = Update.ParLocation;
                 Parcel.Realtime = Update.Realtime;
+                Parcel.Note = Update.Note;
                 Parcel.Price = Update.Price;
                 Parcel.CusID = Update.CusID;
                 Parcel.ManID = Update.ManID;

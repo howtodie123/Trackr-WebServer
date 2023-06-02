@@ -17,13 +17,12 @@ namespace TestTestServer
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddConnections();
             // Thêm các service là các class không nằm bên trong các folder
             builder.Services.AddSingleton<FileService>(); // cho phần up file
             builder.Services.AddSingleton<EsistAccountService>(); // cho phần check Account 
-            //
-            builder.Services.AddConnections();
-            //
-             builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
+                                                                  //
+            builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
           //  builder.Services.AddDbContext<APIData>(options => options.UseInMemoryDatabase("ApiDatabase"));
             /*
             builder.Services.AddDbContext<MyDatabaseContext>(options =>

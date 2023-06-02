@@ -2,6 +2,7 @@
 {
     public class CustomerRequest
     {
+        public string? CusImage { get; set; }
         public string? CusName { get; set; }
         public string? CusAddress { get; set; }
         public string? CusPhone { get; set; }

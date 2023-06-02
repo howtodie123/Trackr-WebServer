@@ -31,14 +31,14 @@ namespace TestTestServer.Controllers
         }
         // post: tạo admin mới
         [HttpPost]
-        public async Task<IActionResult> Add(AdminRequest addd)
+        public async Task<IActionResult> Add(AdminRequest request)
         {
             var admin = new Ad()
             {
-               // AdID = addd.AdID,
-                AdName = addd.AdName,
-                AdAccount = addd.AdAccount,
-                AdPassword = addd.AdPassword,
+                AdImage = request.AdImage,
+                AdName = request.AdName,
+                AdAccount = request.AdAccount,
+                AdPassword = request.AdPassword,
             };
             await dbContext.Admins.AddAsync(admin);
             await dbContext.SaveChangesAsync();
@@ -52,6 +52,7 @@ namespace TestTestServer.Controllers
             var admin = await dbContext.Admins.FindAsync(id);
             if(admin != null) 
             {
+                admin.AdImage = updateAdRequest.AdImage;
                 admin.AdName = updateAdRequest.AdName;
                 admin.AdAccount = updateAdRequest.AdAccount;
                 admin.AdPassword = updateAdRequest.AdPassword;

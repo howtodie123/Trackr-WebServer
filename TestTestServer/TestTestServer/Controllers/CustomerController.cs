@@ -13,10 +13,12 @@ namespace TestTestServer.Controllers
     {
         private readonly APIData dbContext;
         private readonly IConfiguration _configuration;
-        public CustomerController(APIData dbContext, IConfiguration _configuration)
+        private readonly EsistAccountService _esistAccountService;
+        public CustomerController(APIData dbContext, IConfiguration _configuration, EsistAccountService esistAccountService)
         {
             this.dbContext = dbContext;
             this._configuration = _configuration;
+            _esistAccountService = esistAccountService;
         }
         // get: lấy dữ liệu
         [HttpGet]
@@ -67,76 +69,34 @@ namespace TestTestServer.Controllers
         }
         // post: tạo  mới
         [HttpPost]
-        public async Task<IActionResult> Add(CustomerRequest addd)
+        public async Task<IActionResult> Add(CustomerRequest Request)
         {
-            var cus = new CheckEsistAccount(); var CusCheck = new CheckEsistAccount();
-            
-                await
-                using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
-                {
-                    // SqlParameter ID = new SqlParameter("@id", SqlDbType.Int);
-                    //  ID.Value = id;
-                    var sqlCus = "SELECT CusAccount FROM Customer Where CusAccount = '" + addd.CusAccount.ToString() + "'";
-                    connection.Open();
-                    using SqlCommand command = new SqlCommand(sqlCus, connection);
-                    using SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var check = new CheckEsistAccount()
-                        {
-                            account = reader["CusAccount"].ToString(),
-                        };
-                        cus = check;
-                    }
-                    if (cus == CusCheck)
-                    {
-                        var sqlAd = "SELECT AdAccount FROM Admins Where AdAccount = '" + addd.CusAccount.ToString() + "'";
-                        using SqlCommand commandAd = new SqlCommand(sqlAd, connection);
-                        using SqlDataReader readerAd = command.ExecuteReader();
-                        while (readerAd.Read())
-                        {
-                            var check = new CheckEsistAccount()
-                            {
-                                account = readerAd["AdAccount"].ToString(),
-                            };
-                            cus = check;
-                        }
-                        if (cus == CusCheck)
-                        {
-                            var sqlDeli = "SELECT ManAccount FROM DeliveryMan Where ManAccount = '" + addd.CusAccount.ToString() + "'";
-                            using SqlCommand commandDeli = new SqlCommand(sqlAd, connection);
-                            using SqlDataReader readerDeli = command.ExecuteReader();
-                            while (readerDeli.Read())
-                            {
-                                var check = new CheckEsistAccount()
-                                {
-                                    account = readerDeli["ManAccount"].ToString(),
-                                };
-                                cus = check;
-                            }
-                            if (cus == CusCheck) { return NotFound(); }
-                        }
-                        
-                    }
-                }
+            LoginCheck login = new LoginCheck
+            {
+                Account = Request.CusAccount,
+                Password = Request.CusPassword,
+            };
 
-                // THêm 1 Customer mới
+            var check = await _esistAccountService.checkAccount(login);
+            if (check.Account != null) { return NotFound(); }
+
+            // THêm 1 Customer mới
             var customer = new Customer()
             {
-                // CusID = addd.CusID,
-                CusName = addd.CusName,
-                CusAddress = addd.CusAddress,
-                CusPhone = addd.CusPhone,
-                CusBirth = addd.CusBirth,
-                CusDateRegister = addd.CusDateRegister,
-                CusAccount = addd.CusAccount,
-                CusPassword = addd.CusPassword,
+                CusImage = Request.CusImage,
+                CusName = Request.CusName,
+                CusAddress = Request.CusAddress,
+                CusPhone = Request.CusPhone,
+                CusBirth = Request.CusBirth,
+                CusDateRegister = Request.CusDateRegister,
+                CusAccount = Request.CusAccount,
+                CusPassword = Request.CusPassword,
             };
             await dbContext.Customer.AddAsync(customer);// lưu customer
             await dbContext.SaveChangesAsync();  // lưu các thay đổi customer 
             return Ok(customer);
         }
-        //
+        // Tạo customer với 5 đơn hàng ngẫu nhiên có sẵn 
         [HttpPost("addParcel")]
         public async Task<IActionResult> Add(Customer customer)
         {

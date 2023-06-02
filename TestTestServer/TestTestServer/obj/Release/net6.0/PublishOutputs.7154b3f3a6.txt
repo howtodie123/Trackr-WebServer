@@ -1,6 +1,7 @@
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\TestTestServer.exe
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\DataLocationHCMcity.json
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\DataParcel.json
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\TestTestServer.dll
 D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\TestTestServer.runtimeconfig.json

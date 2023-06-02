@@ -33,6 +33,9 @@ namespace TestTestServer.Migrations
                     b.Property<string>("AdAccount")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AdImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AdName")
                         .HasColumnType("nvarchar(max)");
 
@@ -64,6 +67,9 @@ namespace TestTestServer.Migrations
                     b.Property<DateTime>("CusDateRegister")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CusImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CusName")
                         .HasColumnType("nvarchar(max)");
 
@@ -87,6 +93,9 @@ namespace TestTestServer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManID"));
 
                     b.Property<string>("ManAccount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ManImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ManName")
