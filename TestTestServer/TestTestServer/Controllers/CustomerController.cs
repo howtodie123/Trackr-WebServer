@@ -63,6 +63,7 @@ namespace TestTestServer.Controllers
                         CusID = (int)reader["CusID"],
                         ManID = (int)reader["ManID"],
                     };
+                    reader.Close();
                     Parcels.Add(parcel);
                 }
             }
@@ -78,7 +79,7 @@ namespace TestTestServer.Controllers
                 Password = Request.CusPassword,
             };
 
-            var check = await _esistAccountService.checkAccount(login);
+            var check = await _esistAccountService.checkAccount(login); // kiểm tra xem có trùng tên đăng nhập hay không
             if (check.Account != null) { return NotFound(); }
 
             // THêm 1 Customer mới
@@ -188,10 +189,12 @@ namespace TestTestServer.Controllers
                     Realtime = reader["RealTime"].ToString() + "@" + location.RealTime;
                 }
                 reader.Close();
+                // cập nhật Location
                 var sqlUpdate = "UPDATE Parcel SET Parlocation  = '" + LocationParcel + "' WHERE ParID = '" + location.ParID + "'";
                 using SqlCommand sqlCommand = new SqlCommand(sqlUpdate, connection);
                 SqlDataReader sqlReader = sqlCommand.ExecuteReader();
                 sqlReader.Close();
+                // cập nhật realtime
                 var sqlUpdate1 = "UPDATE Parcel SET Realtime  = '" + Realtime + "' WHERE ParID = '" + location.ParID + "'";
                 using SqlCommand sqlCommand1 = new SqlCommand(sqlUpdate1, connection);
                 SqlDataReader sqlReader1 = sqlCommand1.ExecuteReader();

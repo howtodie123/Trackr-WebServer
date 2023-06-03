@@ -89,10 +89,8 @@ namespace TestTestServer
             {
                 return;
             }
-
             printPath(parents[currentVertex], parents);
             node[check++] = currentVertex;
-            //Console.Write(currentVertex + " ");
         }
         public int Location()
         {

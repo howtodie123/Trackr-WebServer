@@ -68,49 +68,52 @@ namespace TestTestServer.Controllers
         {   
             string? ProcessTree = null;
             // chức năng tạo lộ trình cho parcel 
-            if(Update.ParStatus == "PROCESSED")
+            try
             {
-                var AddressHCM = new List<ProcessTreeAddress>();
-                using (StreamReader r = new StreamReader("DataLocationHCMcity.json"))
+                if (Update.ParStatus == "PROCESSED") // nếu trạng thái là PROCESSED sẽ chạy thuật toán tìm kiếm đường đi cho parcel
                 {
-                    string json = r.ReadToEnd();
-                    AddressHCM = JsonSerializer.Deserialize<List<ProcessTreeAddress>>(json);
-                }
-                await
-               using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
-               {
-                    string loca = ""; int check = -1;
-                    var sql = "SELECT  CusAddress FROM Customer Where CusID = '" + Update.CusID + "'";
-                    connection.Open();
-                    using SqlCommand command = new SqlCommand(sql, connection);
-                    using SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    var AddressHCM = new List<ProcessTreeAddress>();
+                    using (StreamReader r = new StreamReader("DataLocationHCMcity.json"))  // đọc file dữ liệu bản đồ Thành Phố HCM
                     {
-                        loca = reader["CusAddress"].ToString();
+                        string json = r.ReadToEnd();
+                        AddressHCM = JsonSerializer.Deserialize<List<ProcessTreeAddress>>(json);
                     }
-                    reader.Close();
-                    
+                    await
+                   using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
+                    {
+                        string loca = ""; int check = -1;
+                        var sql = "SELECT  CusAddress FROM Customer Where CusID = '" + Update.CusID + "'";
+                        connection.Open();
+                        using SqlCommand command = new SqlCommand(sql, connection);
+                        using SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            loca = reader["CusAddress"].ToString();  // Lấy địa chỉ của khách hàng
+                        }
+                        reader.Close();
                         string[] EndLoca = loca.Split('*');
                         string Name = EndLoca[1];
-                        for(int i = 0; i < 24; i++)
+                        for (int i = 0; i < 24; i++)
                         {
-                            if(Name == AddressHCM[i].name)
+                            if (Name == AddressHCM[i].name)
                             {
                                 check = i;
-                            }    
-                        }    
-                        Tree.dijkstra(0,check);
+                            }
+                        }
+                        Tree.dijkstra(0, check);  // Chạy THuật toán Dijikstra tìm đường đi ngắn nhất 
                         int[] check1 = Tree.Tree();
                         ProcessTree = Tree.distance.ToString();
-                        for (int i = 0; i < Tree.Location(); i++)
+                        for (int i = 0; i < Tree.Location(); i++)  // Thêm lộ trình đi
                         {
-                            ProcessTree += "@" + AddressHCM[check1[i]].nearest_address + "@" + AddressHCM[check1[i]].address ;
+                            ProcessTree += AddressHCM[check1[i]].nearest_address + "@" + AddressHCM[check1[i]].address + "@";
                         }
-                        ProcessTree +="@" + loca;
+                        string locat = loca.Replace("*", ",");
+                        ProcessTree += locat;
                         Update.ParRouteLocation = ProcessTree;
-                   
+                    }
                 }
             }
+            catch { }
             
             // chỉnh sửa dữ liệu trong parcel
             var Parcel = await dbContext.Parcel.FindAsync(id);
