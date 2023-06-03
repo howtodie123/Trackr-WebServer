@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <IisApp path="D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\Out\" />
-  <dbfullsql path="D:\LapTrinhMang\LyThuyet\DoAnLyThuyet\TestTestServer\TestTestServer\obj\Release\net6.0\PubTmp\EFSQLScripts\TestTestServer.Data.APIData.sql" />
-</sitemanifest>
