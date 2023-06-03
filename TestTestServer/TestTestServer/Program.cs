@@ -21,7 +21,7 @@ namespace TestTestServer
             // Thêm các service là các class không nằm bên trong các folder
             builder.Services.AddSingleton<FileService>(); // cho phần up file
             builder.Services.AddSingleton<EsistAccountService>(); // cho phần check Account 
-                                                                  //
+            builder.Services.AddSingleton<ProcessTree>();   // cho phần cây tiến trình
             builder.Services.AddDbContext<APIData>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApiDatabase")));
           //  builder.Services.AddDbContext<APIData>(options => options.UseInMemoryDatabase("ApiDatabase"));
             /*

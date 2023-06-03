@@ -101,7 +101,7 @@ namespace TestTestServer.Controllers
             await
             using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
             {
-                var sql = "SELECT ParID,ParImage, ParDescription, ParStatus, ParDeliveryDate ,ParLocation ,Realtime ,Note, Price, CusID , ManID FROM Parcel Where ManID = '" + id.ToString() + "'";
+                var sql = "SELECT ParRouteLocation,ParID,ParImage, ParDescription, ParStatus, ParDeliveryDate ,ParLocation ,Realtime ,Note, Price, CusID , ManID FROM Parcel Where ManID = '" + id.ToString() + "'";
                 connection.Open();
                 using SqlCommand command = new SqlCommand(sql, connection);
                 using SqlDataReader reader = command.ExecuteReader();
@@ -113,6 +113,7 @@ namespace TestTestServer.Controllers
                         ParImage = reader["ParImage"].ToString(),
                         ParDescription = reader["ParDescription"].ToString(),
                         ParStatus = reader["ParStatus"].ToString(),
+                        ParRouteLocation = reader["ParRouteLocation"].ToString(),
                         ParDeliveryDate = (DateTime)reader["ParDeliveryDate"],
                         ParLocation = reader["ParLocation"].ToString(),
                         Realtime = reader["Realtime"].ToString(),

@@ -10,7 +10,7 @@ namespace TestTestServer.Models
         public string? ParDescription { get; set; }
         public string? ParStatus { get; set; }
         public DateTime ParDeliveryDate { get; set; }
-        public string ParRouteLocation { get; set; } // cái này là sẽ lưu full path
+        public string? ParRouteLocation { get; set; } // cái này là sẽ lưu full path
         public string? ParLocation { get; set; }// lưu giá trị nơi xuất phát, r từ từ cập nhật
         public string? Realtime { get; set; }// y chang cái trên 
         public string? Note { get; set; }

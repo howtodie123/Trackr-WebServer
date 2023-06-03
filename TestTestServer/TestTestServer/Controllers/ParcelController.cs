@@ -1,9 +1,13 @@
 ﻿using TestTestServer.Data;
 using Microsoft.AspNetCore.Mvc;
+using TestTestServer;
 using TestTestServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System;
+using System.Diagnostics;
+using Microsoft.Data.SqlClient;
+using System.Text.Json;
 
 namespace TestTestServer.Controllers
 {
@@ -12,10 +16,14 @@ namespace TestTestServer.Controllers
     public class ParcelController : Controller
     {
         private readonly APIData dbContext;
+        private  ProcessTree Tree;
+        private readonly IConfiguration _configuration;
 
-        public ParcelController(APIData dbContext)
+        public ParcelController(APIData dbContext, ProcessTree tree, IConfiguration configuration)
         {
             this.dbContext = dbContext;
+            Tree = tree;
+            _configuration = configuration;
         }
         // get: lấy dữ liệu
         [HttpGet]
@@ -41,6 +49,7 @@ namespace TestTestServer.Controllers
                 ParDescription = parcelRequest.ParDescription,
                 ParStatus = parcelRequest.ParStatus,
                 ParDeliveryDate = parcelRequest.ParDeliveryDate,
+                ParRouteLocation = parcelRequest.ParRouteLocation,
                 ParLocation = parcelRequest.ParLocation,
                 Realtime = parcelRequest.Realtime,
                 Note = parcelRequest.Note,
@@ -56,7 +65,54 @@ namespace TestTestServer.Controllers
         [HttpPut]
         [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, ParcelRequest Update)
-        {
+        {   
+            string? ProcessTree = null;
+            // chức năng tạo lộ trình cho parcel 
+            if(Update.ParStatus == "PROCESSED")
+            {
+                var AddressHCM = new List<ProcessTreeAddress>();
+                using (StreamReader r = new StreamReader("DataLocationHCMcity.json"))
+                {
+                    string json = r.ReadToEnd();
+                    AddressHCM = JsonSerializer.Deserialize<List<ProcessTreeAddress>>(json);
+                }
+                await
+               using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
+               {
+                    string loca = ""; int check = -1;
+                    var sql = "SELECT  CusAddress FROM Customer Where CusID = '" + Update.CusID + "'";
+                    connection.Open();
+                    using SqlCommand command = new SqlCommand(sql, connection);
+                    using SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        loca = reader["CusAddress"].ToString();
+                    }
+                    reader.Close();
+                    
+                        string[] EndLoca = loca.Split('*');
+                        string Name = EndLoca[1];
+                        for(int i = 0; i < 24; i++)
+                        {
+                            if(Name == AddressHCM[i].name)
+                            {
+                                check = i;
+                            }    
+                        }    
+                        Tree.dijkstra(0,check);
+                        int[] check1 = Tree.Tree();
+                        ProcessTree = Tree.distance.ToString();
+                        for (int i = 0; i < Tree.Location(); i++)
+                        {
+                            ProcessTree += "@" + AddressHCM[check1[i]].nearest_address + "@" + AddressHCM[check1[i]].address ;
+                        }
+                        ProcessTree +="@" + loca;
+                        Update.ParRouteLocation = ProcessTree;
+                   
+                }
+            }
+            
+            // chỉnh sửa dữ liệu trong parcel
             var Parcel = await dbContext.Parcel.FindAsync(id);
             if (Parcel != null)
             {
@@ -64,6 +120,7 @@ namespace TestTestServer.Controllers
                 Parcel.ParDescription = Update.ParDescription;
                 Parcel.ParStatus = Update.ParStatus;
                 Parcel.ParDeliveryDate = Update.ParDeliveryDate;
+                Parcel.ParRouteLocation = Update.ParRouteLocation;
                 Parcel.ParLocation = Update.ParLocation;
                 Parcel.Realtime = Update.Realtime;
                 Parcel.Note = Update.Note;

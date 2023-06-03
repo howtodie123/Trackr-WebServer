@@ -42,7 +42,7 @@ namespace TestTestServer.Controllers
             await
             using (var connection = new SqlConnection(_configuration.GetConnectionString("ApiDatabase")))
             {
-                var sql = "SELECT ParID,ParImage, ParDescription, ParStatus, ParDeliveryDate ,ParLocation ,Realtime ,Note, Price, CusID , ManID FROM Parcel Where CusID = '" + id.ToString() +  "'";
+                var sql = "SELECT ParRouteLocation,ParID,ParImage, ParDescription, ParStatus, ParDeliveryDate ,ParLocation ,Realtime ,Note, Price, CusID , ManID FROM Parcel Where CusID = '" + id.ToString() +  "'";
                 connection.Open();
                 using SqlCommand command = new SqlCommand(sql, connection);
                 using SqlDataReader reader = command.ExecuteReader();
@@ -54,6 +54,7 @@ namespace TestTestServer.Controllers
                         ParImage = reader["ParImage"].ToString(),
                         ParDescription = reader["ParDescription"].ToString(),
                         ParStatus = reader["ParStatus"].ToString(),
+                        ParRouteLocation = reader["ParRouteLocation"].ToString(),
                         ParDeliveryDate = (DateTime)reader["ParDeliveryDate"],
                         ParLocation = reader["ParLocation"].ToString(),
                         Realtime = reader["Realtime"].ToString(),
@@ -104,7 +105,7 @@ namespace TestTestServer.Controllers
             using (StreamReader r = new StreamReader("DataParcel.json"))
             {
                 string json = r.ReadToEnd();
-                ParcelRD = JsonSerializer.Deserialize<List<ParcelRandom>>(json);
+                ParcelRD = JsonSerializer.Deserialize<List<ParcelRandom>>(json); // đọc file json r lưu vào 1 list chứa model tương ứng
             }
 
             DateTime currentDateTime = DateTime.Now;
@@ -129,7 +130,7 @@ namespace TestTestServer.Controllers
                 await dbContext.Parcel.AddAsync(Parcel);
                 await dbContext.SaveChangesAsync();
             }
-            return Ok("haha");
+            return Ok("succced");
         }
         // put: chỉnh sửa dữ liệu
         [HttpPut]

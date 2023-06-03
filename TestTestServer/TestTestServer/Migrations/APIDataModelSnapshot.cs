@@ -141,6 +141,9 @@ namespace TestTestServer.Migrations
                     b.Property<string>("ParLocation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ParRouteLocation")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ParStatus")
                         .HasColumnType("nvarchar(max)");
 

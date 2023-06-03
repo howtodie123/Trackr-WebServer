@@ -1,27 +1,3 @@
-/*
-[
-  { "name": "Quận 1" },
-  { "name": "Quận 2" },
-  { "name": "Quận 3" },
-  { "name": "Quận 4" },
-  { "name": "Quận 5" },
-  { "name": "Quận 6" },
-  { "name": "Quận 7" },
-  { "name": "Quận 8" },
-  { "name": "Quận 9" },
-  { "name": "Quận 10" },
-  { "name": "Quận 11" },
-  { "name": "Quận 12" },
-  { "name": "Quận Bình Tân" },
-  { "name": "Quận Bình Thạnh" },
-  { "name": "Quận Gò Vấp" },
-  { "name": "Quận Phú Nhuận" },
-  { "name": "Quận Tân Bình" },
-  { "name": "Quận Tân Phú" },
-  { "name": "Quận Thủ Đức" }
-]
-*/
-// Giá trị của mảng.
 [
   {
     "name": "Quận 1",
@@ -117,5 +93,30 @@
     "name": "Quận Thủ Đức",
     "address": "Đại học Khoa học Tự nhiên, Phường Linh Trung, Thành Phố Thủ Đức, TPHCM",
     "nearest_address": "bệnh viện Thủ Đức ,29 Phú Châu, Tam Phú, thành phố Thủ Đức, TPHCM"
+  },
+  {
+    "name": "Huyện Hóc Môn",
+    "address": "Công viên Đá Nhật , 87/8p Xuân Thới Thượng, 6 Ấp Xuân Thới Đông, Xuan Thoi Dong 1, Hóc Môn, TPHCM",
+    "nearest_address": "189E Đặng Công Bỉnh, Xuân Thới Sơn, Hóc Môn, TPHCM"
+  },
+  {
+    "name": "Huyện Củ Chi",
+    "address": "Khu du lịch Tây Thành, TP.HCM, TL8, Phước Vĩnh An, Củ Chi, TPHCM",
+    "nearest_address": "2FJV+5VR, Khu Du Lịch sinh thái, Ấp Ngã Tư, Củ Chi, TPHCM"
+  },
+  {
+    "name": "Huyện Bình Chánh",
+    "address": "15 Đ. Võ Trần Chí, Tân Kiên, Bình Chánh, TPHCM",
+    "nearest_address": "Khu dân cư Việt Phú Garden, Bình Chánh, TPHCM"
+  },
+  {
+    "name": "Huyện Nhà Bè",
+    "address": "Gaming house SCVGFH, 154 tổ 7 Ấp 3, Hiệp Phước, Nhà Bè, TPHCM",
+    "nearest_address": "179A Đ. Nguyễn Hữu Thọ, Nhơn Đức, Nhà Bè, TPHCM"
+  },
+  {
+    "name": "Huyện Cần Giờ",
+    "address": "HR6H+8G9, Rừng Sác, Bình Khánh, Cần Giờ, TPHCM",
+    "nearest_address": "1541 Rừng Sác, An Thới Đông, Cần Giờ, TPHCM"
   }
 ]
