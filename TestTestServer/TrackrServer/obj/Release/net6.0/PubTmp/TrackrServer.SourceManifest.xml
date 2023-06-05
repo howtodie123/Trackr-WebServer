@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <IisApp path="D:\github\.github\Trackr-WebServer\TestTestServer\TrackrServer\obj\Release\net6.0\PubTmp\Out\" />
-  <dbfullsql path="D:\github\.github\Trackr-WebServer\TestTestServer\TrackrServer\obj\Release\net6.0\PubTmp\EFSQLScripts\TestTestServer.Data.APIData.sql" />
-</sitemanifest>
