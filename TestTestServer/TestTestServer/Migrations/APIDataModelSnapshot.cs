@@ -157,6 +157,28 @@ namespace TestTestServer.Migrations
 
                     b.ToTable("Parcel");
                 });
+
+            modelBuilder.Entity("TestTestServer.Models.Review", b =>
+                {
+                    b.Property<int>("ReID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReID"));
+
+                    b.Property<int>("ParID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Star")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReID");
+
+                    b.ToTable("Review");
+                });
 #pragma warning restore 612, 618
         }
     }

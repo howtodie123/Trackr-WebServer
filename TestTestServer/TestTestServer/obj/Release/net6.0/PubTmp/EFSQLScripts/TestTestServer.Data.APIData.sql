@@ -169,3 +169,28 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230609123847_new5')
+BEGIN
+    CREATE TABLE [Review] (
+        [ReID] int NOT NULL IDENTITY,
+        [ParID] int NOT NULL,
+        [ReDescription] nvarchar(max) NULL,
+        [Star] int NOT NULL,
+        CONSTRAINT [PK_Review] PRIMARY KEY ([ReID])
+    );
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230609123847_new5')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230609123847_new5', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
