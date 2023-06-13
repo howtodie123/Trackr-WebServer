@@ -101,6 +101,10 @@ namespace TestTestServer.Controllers
                                 check = i;
                             }
                         }
+                    if (check == 0)
+                    { ProcessTree += "2@Bưu điện Trung tâm Sài Gòn, 125 Công xã Paris, Bến Nghé, Quận 1,TPHCM@"; }
+                    else
+                    {
                         Tree.dijkstra(0, check);  // Chạy THuật toán Dijikstra tìm đường đi ngắn nhất 
                         int[] check1 = Tree.Tree();
                         ProcessTree = Tree.distance.ToString() + "@";
@@ -108,6 +112,7 @@ namespace TestTestServer.Controllers
                         {
                             ProcessTree += AddressHCM[check1[i]].nearest_address + "@" + AddressHCM[check1[i]].address + "@";
                         }
+                    }
                         ProcessTree += loca;
                         Update.Price = Tree.distance*5000; // tính ship cod
                         Update.ParRouteLocation = ProcessTree;
